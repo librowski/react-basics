@@ -8,32 +8,29 @@
 
     <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 </head>
 <body>
     <div id="root"></div>
 </body>
-<script>
-    const Name = (props) => React.createElement(
-            'h1',
-            {},
-            props.name
+<script type="text/babel">
+    const Name = (props) => <h1>{ props.name }</h1>;
+
+    const Breed = (props) => (
+        <p style={{ color: 'red'}}>
+            { props.breed }
+        </p>
     );
 
-    const Breed = (props) => React.createElement(
-            'p',                            // element / component
-            { style: { color: 'red' }},     // props
-            props.breed                     // children
-    );
-
-    const Animal = (props) => React.createElement(
-       'div',
-        {},
-        React.createElement(Name, { name: props.name }),
-        React.createElement(Breed, { breed: props.breed })
+    const Animal = (props) => (
+        <div>
+            <Name name={props.name} />
+            <Breed breed={props.breed} />
+        </div>
     );
 
     ReactDOM.render(
-        React.createElement(Animal, { name: 'Doggo', breed: 'Corgie' }),
+        <Animal name={'Doggo'} breed={'Corgie'} />,
         document.getElementById('root')
     );
 </script>
