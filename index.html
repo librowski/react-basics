@@ -13,21 +13,23 @@
     <div id="root"></div>
 </body>
 <script>
-    const Animal = (props) => React.createElement(
-       'div',
-        {},
-
-        React.createElement(
+    const Name = (props) => React.createElement(
             'h1',
             {},
             props.name
-        ),
+    );
 
-        React.createElement(
-            'p',
-            {},
-            props.breed
-        )
+    const Breed = (props) => React.createElement(
+            'p',                            // element / component
+            { style: { color: 'red' }},     // props
+            props.breed                     // children
+    );
+
+    const Animal = (props) => React.createElement(
+       'div',
+        {},
+        React.createElement(Name, { name: props.name }),
+        React.createElement(Breed, { breed: props.breed })
     );
 
     ReactDOM.render(
