@@ -8,15 +8,29 @@ const Breed = (props) => (
     </p>
 );
 
+const randomJokeURL = 'https://api.chucknorris.io/jokes/random';
+
 export const Animal = (props) => {
+    const [joke, setJoke] = React.useState('Loading joke...');
+
     React.useEffect(() => {
-        console.log(`Hello, I'm ${props.name}!`);
-    });
+        const fetchJoke = async () => {
+            setTimeout(async () => {
+                const joke = await fetch(randomJokeURL);
+                const { value } = await joke.json();
+
+                setJoke(value);
+            }, 1000)
+        }
+
+        fetchJoke();
+    }, []);
 
     return (
         <div>
             <Name name={ props.name } />
             <Breed breed={ props.breed } />
+            <span style={{ fontSize: 12 }}>{ joke }</span>
         </div>
     );
 }
