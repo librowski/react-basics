@@ -45,7 +45,7 @@ export const AnimalsList = () => {
             <h1>Animals</h1>
             {
                 animals.map(({ name, breed }) => (
-                    <Animal name={name} breed={breed} /> 
+                    <Animal key={name} name={name} breed={breed} /> 
                 ))
             }
         </div>
